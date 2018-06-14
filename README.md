@@ -19,7 +19,7 @@ pip install -r requirements.txt
 
 ```~# image2HTML.py -i meme.png -o index.html```
 
-*There are limitations in terms of image dimensions as most email clients have limits as to how many columns it will display. Big Images are truncated or displayed incorrectly (might also load slower).*
+*There are limitations in terms of image dimensions as most email clients have limits as to how many columns they can display. Big Images are truncated or displayed incorrectly (might also load slower). Recommended image size is 100px x 100px.*
 
 
 Compatible with Python>=3.6 but can be easly ported to any other version. (Use of f-strings makes it incompatible with previous versions. ```f-strings``` can be replaced with ```.format()```)
