@@ -23,3 +23,7 @@ pip install -r requirements.txt
 
 
 Compatible with Python>=3.6 but can be easly ported to any other version. (Use of f-strings makes it incompatible with previous versions. ```f-strings``` can be replaced with ```.format()```)
+
+
+
+##### Twitter: [@WalterMccan](https://twitter.com/WalterMccan)
