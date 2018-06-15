@@ -64,8 +64,7 @@ def process(width, height, pixels):
     for l in slice_it(hex_pixels, height):
         tpl = [(k, sum(1 for i in g)) for k,g in groupby(l)]
         output_list.extend(tpl) 
-    print(output_list)
-    
+        
     # Convert to HTML
     count = 0
     for d in output_list:    
