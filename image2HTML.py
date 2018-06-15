@@ -45,6 +45,7 @@ def slice_it(hex_pixels, height):
         stop = start + len(hex_pixels[i::height])
         rows_list.append(hex_pixels[start:stop])
         start = stop
+        #print(rows_list)
     return rows_list
 
 # Process image data -> html
@@ -54,18 +55,24 @@ def process(width, height, pixels):
               <table><tr>'''
 
     # Convert all pixels to hex format
-    hex_pixels = [tup2hex(pixels[x,y]) for y in range(height) \
-                                       for x in range(width)]
-
+    hex_pixels = [tup2hex(pixels[x,y]) for y in range(height) for x in range(width)]
     # Group the consecutive pixels with  
     # the same color in the same row into single html statement 
     # e.g. instead of multiple <td width=1 bgcolor=#000 /> make 
     # one with higher width <td width=100 bgcolor=#000 />
-    count = 0
+    output_list = []
     for l in slice_it(hex_pixels, height):
+        #print(l)
         tpl = [(k, sum(1 for i in g)) for k,g in groupby(l)]
-        output += f'<td width={tpl[0][1]} bgcolor={tpl[0][0]} />'
-        count += tpl[0][1]
+        output_list.extend(tpl) 
+    print(output_list)
+    
+    # Convert to HTML
+    count = 0
+    for d in output_list:    
+        output += f'<td width={d[1]} bgcolor={d[0]} />'
+        count += d[1]
+        #print(count)
         if count % width == 0:
             output += '</tr></table><table><tr>'
     output += '</tr></table></center></html>'
