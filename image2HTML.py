@@ -20,7 +20,7 @@ def main(argv):
         elif opt in ("-o", "--ofile"):
             outputfile = arg
     
-    # Read Image   
+    # Read Image
     im = Image.open(inputfile).convert('RGB')
     width, height = im.size
     pixels = im.load()
@@ -56,18 +56,18 @@ def process(width, height, pixels):
     # Convert all pixels to hex format
     hex_pixels = [tup2hex(pixels[x,y]) for y in range(height) for x in range(width)]
     
-    # Group the consecutive pixels with  
-    # the same color in the same row into single html statement 
-    # e.g. instead of multiple <td width=1 bgcolor=#000 /> make 
+    # Group the consecutive pixels with
+    # the same color in the same row into single html statement
+    # e.g. instead of multiple <td width=1 bgcolor=#000 /> make
     # one with higher width <td width=100 bgcolor=#000 />
     output_list = []
     for l in slice_it(hex_pixels, height):
         tpl = [(k, sum(1 for i in g)) for k,g in groupby(l)]
-        output_list.extend(tpl) 
+        output_list.extend(tpl)
         
     # Convert to HTML
     count = 0
-    for d in output_list:    
+    for d in output_list:
         output += f'<td width={d[1]} bgcolor={d[0]} />'
         count += d[1]
         if count % width == 0:
