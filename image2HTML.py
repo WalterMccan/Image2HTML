@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 import sys, getopt
 from PIL import Image
 from itertools import groupby
